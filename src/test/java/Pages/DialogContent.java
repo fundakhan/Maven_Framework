@@ -23,7 +23,7 @@ public class DialogContent extends Parent{
     @FindBy(xpath = "(//span[contains(text(),'Dashboard')])[2]")
     private WebElement dashboard;
 
-    @FindBy(xpath = "//ms-add-button[contains(@tooltip,'TITLE.ADD')]//button") //daha sonra hepsinde kullanmak icin bunu bulup kullandik
+    @FindBy(xpath = "//ms-add-button[contains(@tooltip,'TITLE.ADD')]//button") 
     private WebElement addButton;
 
     @FindBy(xpath = "//ms-text-field[@formcontrolname='name']//input")
@@ -35,7 +35,7 @@ public class DialogContent extends Parent{
     @FindBy(xpath = "//ms-save-button[@class='ng-star-inserted']") // //ms-save-button//button
     private WebElement saveButton;
 
-    @FindBy(xpath = "//div[contains(text(), 'successfully')]") // diger messajlarda success gectigi icin hepsine ortak olani bulduk
+    @FindBy(xpath = "//div[contains(text(), 'successfully')]") 
     private WebElement successMessage;
 
 
@@ -51,7 +51,7 @@ public class DialogContent extends Parent{
             case "codeInput":  myElement = codeInput; break;
         }
 
-        sendKeysFunction(myElement , value); //parent dan cagirdik
+        sendKeysFunction(myElement , value); 
     }
 
     public void findAndClick(String strElement){
