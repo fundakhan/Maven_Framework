@@ -20,7 +20,7 @@ public class _02_CountrySteps {
     @When("Create  a country")
     public void createACountry() {
         dialogContent.findAndClick("addButton");
-        dialogContent.findAndSend("nameInput","America8");
+        dialogContent.findAndSend("nameInput","America12");
         dialogContent.findAndSend("codeInput","1111");
         dialogContent.findAndClick("saveButton");
 
@@ -28,6 +28,15 @@ public class _02_CountrySteps {
 
     @Then("Success message should be displayed")
     public void successMessageShouldBeDisplayed() {
-        dialogContent.findAndContainsText("successMessage", "successfully");
+
+        dialogContent.findAndContainsText("successMessage", "success");
+    }
+
+    @When("Create a country name as {string} code as {string}")
+    public void createACountryNameAsCodeAs(String name, String code) {
+        dialogContent.findAndClick("addButton");
+        dialogContent.findAndSend("nameInput",name);
+        dialogContent.findAndSend("codeInput",code);
+        dialogContent.findAndClick("saveButton");
     }
 }
