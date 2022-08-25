@@ -74,7 +74,7 @@ public class DialogContent extends Parent{
 
 
 
-    /** 2. asamaya burasi */
+   
     WebElement myElement;
     public void findAndSend(String strElement, String value){
 
@@ -105,7 +105,7 @@ public class DialogContent extends Parent{
         }
 
 
-        clickFunction(myElement); //parent dan cagirdik
+        clickFunction(myElement); 
     }
 
     public void findAndContainsText(String strElement , String text){
@@ -121,19 +121,12 @@ public class DialogContent extends Parent{
     }
 
     public void searchAndDelete(String searchText){
-        findAndSend("searchInput",searchText); //arama kutucuguna kelimeyi yaz
-        findAndClick("searchButton"); //aram butununa bas
+        findAndSend("searchInput",searchText); 
+        findAndClick("searchButton"); 
+        waitUntilLoading(); 
 
-       // delete kismina gelinceye kadar cok hizli oldugu icin bekleme koyuyoruz ki bulup silsin. AMA GEREK YOK BU OLMADAN ZATEN SILDI BENDE
-//        WebDriverWait wait = new WebDriverWait(BaseDriver.getDriver(), Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.stalenessOf(deleteButton));
-
-     // BaseDriver.wait(2);  //hoca da bununla calisti. ama kullanilacak son method
-
-        waitUntilLoading(); // parent da koydugumuz methodu buraya cagirip bekleme yaptiriyoruz. search button unu calistirdiginda sayfanin yuklenmesi kisminda bekliyor
-
-        findAndClick("deleteButton"); //silme butonuna bas
-        findAndClick("deleteDialogBtn"); //dialogdaki silme butununa bas
+        findAndClick("deleteButton"); 
+        findAndClick("deleteDialogBtn");
 
     }
 
