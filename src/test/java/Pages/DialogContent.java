@@ -37,7 +37,7 @@ public class DialogContent extends Parent{
     @FindBy(xpath = "//ms-text-field[@formcontrolname='code']//input")
     private WebElement codeInput;
 
-    @FindBy(xpath = "//ms-save-button[@class='ng-star-inserted']") // //ms-save-button//button
+    @FindBy(xpath = "//ms-save-button//button") // //ms-save-button//button
     private WebElement saveButton;
 
     @FindBy(xpath = "//div[contains(text(), 'successfully')]") 
@@ -52,7 +52,7 @@ public class DialogContent extends Parent{
     @FindBy(xpath = "//button[@aria-label='Close dialog']")
     private WebElement closeDialog;
 
-    @FindBy(xpath = "//ms-text-field[contains(@placeholder, 'FIELD.NAME')]//input")
+    @FindBy(xpath = "(//div[contains(@class, 'mat-form-field-infix ng-tns-c74')]//input)[1]")
     private WebElement searchInput;
 
     @FindBy(xpath = "//ms-search-button//button")
@@ -69,6 +69,9 @@ public class DialogContent extends Parent{
 
     @FindBy(xpath = "//ms-integer-field[@formcontrolname='priority']//input")
     private WebElement priority;
+
+    @FindBy(xpath = "(//button[@class='consent-give'])[1]")
+    private WebElement acceptCookies;
 
 
 
@@ -102,6 +105,7 @@ public class DialogContent extends Parent{
             case "searchButton": myElement = searchButton; break;
             case "deleteButton": myElement = deleteButton; break;
             case "deleteDialogBtn": myElement = deleteDialogBtn; break;
+            case "acceptCookies": myElement = acceptCookies; break;
         }
 
 
@@ -124,11 +128,11 @@ public class DialogContent extends Parent{
         findAndSend("searchInput",searchText); //arama kutucuguna kelimeyi yaz
         findAndClick("searchButton"); //aram butununa bas
 
-       // delete kismina gelinceye kadar cok hizli oldugu icin bekleme koyuyoruz ki bulup silsin. AMA GEREK YOK BU OLMADAN ZATEN SILDI BENDE
+        // delete kismina gelinceye kadar cok hizli oldugu icin bekleme koyuyoruz ki bulup silsin. AMA GEREK YOK BU OLMADAN ZATEN SILDI BENDE
 //        WebDriverWait wait = new WebDriverWait(BaseDriver.getDriver(), Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.stalenessOf(deleteButton));
 
-     // BaseDriver.wait(2);  //hoca da bununla calisti. ama kullanilacak son method
+        // BaseDriver.wait(2);  //hoca da bununla calisti. ama kullanilacak son method
 
         waitUntilLoading(); // parent da koydugumuz methodu buraya cagirip bekleme yaptiriyoruz. search button unu calistirdiginda sayfanin yuklenmesi kisminda bekliyor
 
