@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import Utilities.BaseDriver;
+import com.aventstack.extentreports.service.ExtentTestManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -36,6 +37,9 @@ public class Hooks {
             TakesScreenshot screenshot = (TakesScreenshot) BaseDriver.getDriver();
             File screenFile = screenshot.getScreenshotAs(OutputType.FILE);
 
+            // Extent Report a ekliyor.. en altta ekledigim method dan aliyor
+            ExtentTestManager.getTest().addScreenCaptureFromBase64String(getBase64Screenshot());
+
             try {
 
                 FileUtils.copyFile(screenFile,
@@ -50,5 +54,10 @@ public class Hooks {
 
         // seneryo hatali ise ekran goruntusunu al
         BaseDriver.quitDriver();
+    }
+
+    public String getBase64Screenshot()
+    {
+        return ((TakesScreenshot) BaseDriver.getDriver()).getScreenshotAs(OutputType.BASE64);
     }
 }

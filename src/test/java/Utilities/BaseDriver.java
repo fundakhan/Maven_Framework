@@ -47,7 +47,7 @@ public class BaseDriver {
 //        }
 
         if (driver != null) { // driver varsa kapat
-          //  driver.quit();
+            driver.quit();
             driver = null; //driver in hafizasini bosaltsin
         }
     }
