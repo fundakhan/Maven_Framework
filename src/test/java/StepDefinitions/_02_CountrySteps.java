@@ -5,6 +5,7 @@ import Pages.LeftNav;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class _02_CountrySteps {
     LeftNav leftNav = new LeftNav();
@@ -19,9 +20,11 @@ public class _02_CountrySteps {
 
     @When("Create  a country")
     public void createACountry() {
+        String randomGenName = RandomStringUtils.randomAlphabetic(8); // excel repository ekledikten sonra bu ikisini ekledik
+        String randomGenCode = RandomStringUtils.randomNumeric(4);
         dialogContent.findAndClick("addButton");
-        dialogContent.findAndSend("nameInput","America12");
-        dialogContent.findAndSend("codeInput","1111");
+        dialogContent.findAndSend("nameInput",randomGenName);
+        dialogContent.findAndSend("codeInput",randomGenCode);
         dialogContent.findAndClick("saveButton");
 
     }

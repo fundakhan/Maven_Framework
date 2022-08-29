@@ -53,8 +53,7 @@ Feature: Datatable Functionality
 
      And Success message should be displayed
 
-# Seneryo Outline da verilen degerler icin tum seneryo her satir kadar tekrar calistiriliyordu
-# DataTable da ise , sadece ilgili step icin toplu veri gonderme imkani olusuyor
+
    Scenario: Create a Fee, delete Fee
      And Click on the element in the left Nav
        | setupOne      |

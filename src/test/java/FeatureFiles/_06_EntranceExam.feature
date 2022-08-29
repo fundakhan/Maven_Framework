@@ -2,7 +2,7 @@
 # 2- silme islemi yap
 
 
-Feature: Datatable Functionality
+Feature: Entrance Exam Functionality
 
   Background:
     Given Navigate to basqar
@@ -19,7 +19,7 @@ Feature: Datatable Functionality
       | addButton |
 
     And User sending the keys in Dialog Content
-      | nameInput | Funda4 |
+      | nameInput | Funda6 |
 
     And Click on the element in the Form Content
       | academicPeriod |
@@ -39,8 +39,8 @@ Feature: Datatable Functionality
       | entranceExamsTwo  |
 
 
-    When User delete the "Funda4" from Form Content
-
+    And User delete item from Dialog
+      | funda6 |
 
     Then Success message should be displayed
 

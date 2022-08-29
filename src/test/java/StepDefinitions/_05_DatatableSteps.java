@@ -1,7 +1,9 @@
 package StepDefinitions;
 
 import Pages.DialogContent;
+import Pages.FormContent;
 import Pages.LeftNav;
+import Utilities.BaseDriver;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 
@@ -11,10 +13,12 @@ public class _05_DatatableSteps {
 
     LeftNav leftNav = new LeftNav();
     DialogContent dialogContent = new DialogContent();
-    @And("Click on the element in the left Nav")
-    public void clickOnTheElementInTheLeftNav(DataTable elements) { //burada DataTable String halinde kullanilmis oluyor
 
-        List<String> listElement = elements.asList(String.class); //donusturecegi tipin class halini istiyor
+    FormContent formContent = new FormContent();
+    @And("Click on the element in the left Nav")
+    public void clickOnTheElementInTheLeftNav(DataTable elements) { 
+
+        List<String> listElement = elements.asList(String.class); 
 
         for (int i = 0; i < listElement.size(); i++) {
           //  System.out.println("listElement : " + listElement.get(i));
@@ -38,13 +42,12 @@ public class _05_DatatableSteps {
     @And("User sending the keys in Dialog Content")
     public void userSendingTheKeysInDialogContent(DataTable elements) {
 
-        //Listlerin listi oldugugu icin 2D list kullaniyoruz
+       
         List<List<String>> listElement = elements.asLists(String.class);
 
         for (int i = 0; i < listElement.size(); i++) {
             dialogContent.findAndSend(listElement.get(i).get(0), listElement.get(i).get(1));
-           //listin ilk elemenina(WebElement adi), ikinci elemanu yani degeri gonder
-
+         
         }
 
     }
@@ -55,7 +58,31 @@ public class _05_DatatableSteps {
         for (int i = 0; i < listElement.size(); i++) {
             dialogContent.searchAndDelete(listElement.get(i));
         }
+    }
 
+    @And("Click on the element in the Form Content")
+    public void clickOnTheElementInTheFormContent(DataTable elements) {
+
+        List<String> listElement = elements.asList(String.class);
+        for (int i = 0; i < listElement.size(); i++) {
+            formContent.findAndClick(listElement.get(i));
+
+        }
 
     }
+
+
+    @And("User sending the keys in Form Content")
+    public void userSendingTheKeysInFormContent(DataTable elements) {
+
+        List<List<String>> listElement = elements.asLists(String.class);
+        for (int i = 0; i < listElement.size(); i++) {
+            formContent.findAndSend(listElement.get(i).get(0), listElement.get(i).get(1));
+        }
+
+    }
+        
+
+
+
 }

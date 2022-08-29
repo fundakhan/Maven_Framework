@@ -20,12 +20,6 @@ public class _01_LoginSteps {
     @When("user enter username and password and click button")
     public void enter_username_and_password_and_click_button(){
 
-
-//        dialogContent.username.sendKeys("richfield.edu");
-//        dialogContent.password.sendKeys("Richfield2020!");
-//        dialogContent.loginButton.click();
-
-/** 1. asama burada basliyor */
         dialogContent.findAndSend("username","richfield.edu");
         dialogContent.findAndSend("password", "Richfield2020!");
 
@@ -36,10 +30,8 @@ public class _01_LoginSteps {
     @Then("user should login successfully")
     public void user_should_login_successfully(){
 
-        // dialogContent.waitUntilVisible(dialogContent.dashboard);
-        // Assert.assertTrue(dialogContent.dashboard.getText().contains("Dashboard"));
-
         dialogContent.findAndContainsText("dashboard", "Dashboard");
+        dialogContent.findAndClick("acceptCookies");
 
     }
 }

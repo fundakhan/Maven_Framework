@@ -1,5 +1,6 @@
 Feature: Country Functionality
 
+  @SmokeTest @Regression
   Scenario: Create Country
 
     Given Navigate to basqar
