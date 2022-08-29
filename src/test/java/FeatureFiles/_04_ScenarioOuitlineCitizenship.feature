@@ -21,4 +21,4 @@ Feature: Citizenship with scenario Outline
         | American7       | usa2      |
         | American8       | usa3      |
         | American9       | usa4      |
-        | American10       | usa5      |
+        | American10      | usa5      |
