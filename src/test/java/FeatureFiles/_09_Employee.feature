@@ -9,28 +9,37 @@ Feature: Employee Functionality
     When user enter username and password and click button
     Then user should login successfully
 
-    Scenario: Create and Exist and Delete Employee
+    Scenario Outline: Create and Exist and Delete Employee
       And Click on the element in the left Nav
         | humanResources |
-        | employees |
+        | employees      |
 
       And Click on the element in the Dialog
         | addButton |
 
       And User sending the keys in Form Content
-       | firstname | Funda |
-       | lastName  | Akhan |
-       | employeeId | 55522241 |
+       | firstnameInput | <firstname> |
+       | lastNameInput  | <lastname>  |
+       | employeeIdInput | <id>       |
 
       And Click on the element in the Form Content
-        | gender  |
-        | employeeType |
-        | qualification |
+        | gender               |
+        | <genderOption>       |
+        | employeeType         |
+        | <employeeTypeOption> |
+        | generalInfo          |
+        | qualification        |
+        | <qualificationOption>|
 
       And Click on the element in the Dialog
         | saveButton |
 
       Then Success message should be displayed
+
+
+      Examples:
+        | firstname | lastname | id       | genderOption | employeeTypeOption | qualificationOption |
+        | Funda     | Akhan    | 55544433 | female       | teacher            | master              |
 
 #      And Click on the element in the left Nav
 #        | humanResources |

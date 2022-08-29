@@ -36,30 +36,33 @@ public class FormContent  extends Parent{
     private WebElement  gradeLevel5;
 
     @FindBy(xpath = "//ms-text-field[@formcontrolname='firstName']//input")
-    private WebElement firstname;
+    private WebElement firstnameInput;
 
     @FindBy(xpath = "//ms-text-field[@formcontrolname='lastName']//input")
-    private WebElement lastName;
+    private WebElement lastNameInput;
 
     @FindBy(xpath = "//input[@formcontrolname='employeeId']")
-    private WebElement employeeId;
+    private WebElement employeeIdInput;
 
     @FindBy(xpath = "//mat-select[@formcontrolname='gender']")
     private WebElement gender;
 
-    @FindBy(xpath = "//*[@id='mat-option-3115']/span")
+    @FindBy(xpath = "(//span[@class='mat-option-text'])[3]")
     private WebElement female;
 
     @FindBy(xpath = "//mat-select[@formcontrolname='types']")
     private WebElement employeeType;
 
-    @FindBy(xpath = "//mat-option[@id='mat-option-1626']")
+    @FindBy(xpath = "(//span[@class='mat-option-text'])[1]")
     private WebElement teacher;
+
+    @FindBy(id = "mat-tab-label-0-0")
+    private WebElement generalInfo;
 
     @FindBy(xpath = "//mat-select[@formcontrolname='qualification']")
     private WebElement qualification;
 
-    @FindBy(xpath = "(//div[@id='mat-select-154-panel'])//mat-option[4]")
+    @FindBy(xpath = "(//span[@class='mat-option-text'])[4]")
     private WebElement master;
 
 
@@ -85,6 +88,7 @@ public class FormContent  extends Parent{
             case "female" : myElement = female; break;
             case "employeeType" : myElement = employeeType; break;
             case "teacher" : myElement = teacher; break;
+            case "generalInfo" : myElement = generalInfo; break;
             case "qualification" : myElement = qualification; break;
             case "master" : myElement = master; break;
 
@@ -103,9 +107,9 @@ public class FormContent  extends Parent{
     public void findAndSend(String strElement, String value){
 
         switch (strElement){
-            case "firstname" : myElement = firstname; break;
-            case "lastName" : myElement = lastName; break;
-            case "employeeId" : myElement = employeeId; break;
+            case "firstnameInput" : myElement = firstnameInput; break;
+            case "lastNameInput" : myElement = lastNameInput; break;
+            case "employeeIdInput" : myElement = employeeIdInput; break;
         }
 
         sendKeysFunction(myElement,value);
