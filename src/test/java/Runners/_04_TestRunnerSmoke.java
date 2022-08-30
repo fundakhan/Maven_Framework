@@ -8,7 +8,8 @@ import io.cucumber.testng.CucumberOptions;
 
         tags = "@SmokeTest", // hangi seneryolarda bu etiket varsa onlar calistirilacak
         features = {"src/test/java/FeatureFiles/"}, //hicbir class eklemedik hepsini otomatik alip calistirir
-        glue = {"StepDefinitions"}
+        glue = {"StepDefinitions"},
+        plugin= {"pretty","html:target/site/cucumber-pretty","json:target/cucumber/cucumber.json"}
 
 )
 
