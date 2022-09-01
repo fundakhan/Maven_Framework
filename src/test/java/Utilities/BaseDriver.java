@@ -17,13 +17,14 @@ import java.util.logging.Logger;
 
 public class BaseDriver {
 
+    public static WebDriver driver; // bunun yerine artik altindakini kullanicaz
+
     // Bana ne lazim:  1- browser tipi lazim burada ona gore olusturucam
     // her bir parallel calisan surec icin sadece o surece ozel STATIC bir degisken lazim
     // cunku runner class daki isaret edilen tum senaryolarda aynisinin calismasi lazim.
     // yani her pipeline icin (Local) ve de ona ozel static bir driver a ihtiyacim var
     // donanimdaki adi PIPELINE, yazilimdaki adi THREAD , parallel calisan bir surec
 
-    public static WebDriver driver; // bunun yerine artik altindakini kullanicaz
 
     /** bu baseDriverin yeni hali parallel test olsa da calisacak olmasa da calisacak */
     private static ThreadLocal<WebDriver>  threadDriver = new ThreadLocal<>();
@@ -41,8 +42,8 @@ public class BaseDriver {
 
 
         /** extent report  turkce bilgi calismamasi sebebiyle kondu. dil ile alakali cikaca problemler olursa diye bunu ekledik cucumber in son dersinde. cok da onemli degil */
-//        Locale.setDefault(new Locale("EN"));
-//        System.setProperty("user.language", "EN");
+        Locale.setDefault(new Locale("EN"));
+        System.setProperty("user.language", "EN");
 
         // terminaldeki kirmizi uyari yazilarini kaldirmak icin yaptik
         Logger.getLogger("").setLevel(Level.SEVERE);

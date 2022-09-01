@@ -38,7 +38,7 @@ public class Hooks {
             File screenFile = screenshot.getScreenshotAs(OutputType.FILE);
 
             // Extent Report a ekliyor.. en altta ekledigim method dan aliyor
-           // ExtentTestManager.getTest().addScreenCaptureFromBase64String(getBase64Screenshot());
+            ExtentTestManager.getTest().addScreenCaptureFromBase64String(getBase64Screenshot());
             /** EXTENT report olmadiginda burasi kapatilmali !!! yoksa browserlar KAPANMAZ (aslinda bu acikken bende kapaniyordu zaten ama ismet hoca boyle yaptirdi)
              * resim eklemek istedigimiz zaman bunu acicaz */
 
