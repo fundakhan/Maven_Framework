@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -63,7 +64,15 @@ public class BaseDriver {
                 case "chrome" :
                    // System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY,"true");
                     WebDriverManager.chromedriver().setup(); // setup kisminda artik eski setproperty yazmamiza gerek kalmadi
-                    threadDriver.set(new ChromeDriver());  // bu thread e chrome istenmisse ve yoksa bir tane ekleniyor
+
+                    if (!runningFromIntelliJ()) { // intelliJ disinda bir yerde calismasi icin bunu koyduk. JENKINS icin
+                        ChromeOptions options = new ChromeOptions();
+                        options.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--window-size=1400,2400");
+                        threadDriver.set(new ChromeDriver(options));  // bu thread e chrome istenmisse ve yoksa bir tane ekleniyor
+
+                    }else
+                        threadDriver.set(new ChromeDriver());
+
                     break;
 
                 case "firefox" :
@@ -108,6 +117,11 @@ public class BaseDriver {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static boolean runningFromIntelliJ(){
+        String classPath = System.getProperty("java.class.path");
+        return classPath.contains("idea_rt.jar");
     }
 
 
