@@ -112,55 +112,123 @@
 
     </dependencies>
 
+<!--    <build>-->
+<!--        <plugins>-->
+<!--&lt;!&ndash;    &lt;!&ndash; MASTER THOUGHT CUCUMBER- REPORTING ->BU BOLUMU SADECE MAVEN DAN CALISTIRABILIRIZ. FARKLI BIR REPORT ALMA YONTEMI &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; farkli bir report alma bolumu burasi. report u target in altinda report bolumunden hangi class i calistirdiysan ona bakip gorebilirsin &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash; burada Smoke test tag li olanlari calistirdik.ama bu report a screenshot eklenemiyor &ndash;&gt;&ndash;&gt;-->
+<!--            <plugin> &lt;!&ndash; derlemek icin. intelliJ de sagdaki maven dan test bolumunden calistirmak istedigimizde orasi bu bolumu bulup calistiriyor &ndash;&gt;-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>3.0.0-M1</version>-->
+<!--                <configuration>-->
+
+<!--                    &lt;!&ndash; XML parallel calismada MASTER REPORT icin kondu &ndash;&gt;-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>src/test/java/XMLFiles/ParallelTesting_MasterReport.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
+
+<!--                   &lt;!&ndash;  Parallel calisma olmayacaksa  direkt runner class i calistirmak icin asagidaki bolum kullanilir. tek bir senaryoda ama xml in olmadigi senaryoda calisir &ndash;&gt;-->
+<!--&lt;!&ndash;                    <includes>&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash; for run class or classes /** bulundugu lokasyonu butun klasorlere gore bulup calistiriyor&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        <include>**/_04_TestRunnerSmoke.java</include>&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash;         <include>**/_04_TestRunnerSmoke.java</include>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    </includes>&ndash;&gt;-->
+<!--                    <testFailureIgnore>true</testFailureIgnore>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            &lt;!&ndash; bu bolume kadar olan kisim sonradn eklendi farkli bir rapor alma yontemi &ndash;&gt;-->
+
+<!--            <plugin>-->
+<!--                <groupId>net.masterthought</groupId>-->
+<!--                <artifactId>maven-cucumber-reporting</artifactId>-->
+<!--                <version>2.8.0</version>-->
+
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>execution</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <projectName>Project Name</projectName>-->
+<!--                            <outputDirectory>${project.build.directory}/Report/cucumber-reports</outputDirectory>-->
+<!--                            <cucumberOutput>${project.build.directory}/cucumber/cucumber.json</cucumberOutput>-->
+<!--                            <skippedFails>true</skippedFails>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+<!-- JENKINS icin eklendi -->
     <build>
         <plugins>
-<!--    &lt;!&ndash; MASTER THOUGHT CUCUMBER- REPORTING ->BU BOLUMU SADECE MAVEN DAN CALISTIRABILIRIZ. FARKLI BIR REPORT ALMA YONTEMI &ndash;&gt;-->
-<!--            &lt;!&ndash; farkli bir report alma bolumu burasi. report u target in altinda report bolumunden hangi class i calistirdiysan ona bakip gorebilirsin &ndash;&gt;-->
-<!--            &lt;!&ndash; burada Smoke test tag li olanlari calistirdik.ama bu report a screenshot eklenemiyor &ndash;&gt;-->
-            <plugin> <!-- derlemek icin. intelliJ de sagdaki maven dan test bolumunden calistirmak istedigimizde orasi bu bolumu bulup calistiriyor -->
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
 
-                    <!-- XML parallel calismada MASTER REPORT icin kondu -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/java/XMLFiles/ParallelTesting_MasterReport.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-
-                   <!--  Parallel calisma olmayacaksa  direkt runner class i calistirmak icin asagidaki bolum kullanilir. tek bir senaryoda ama xml in olmadigi senaryoda calisir -->
-<!--                    <includes>-->
-<!--                        &lt;!&ndash; for run class or classes /** bulundugu lokasyonu butun klasorlere gore bulup calistiriyor&ndash;&gt;-->
-<!--                        <include>**/_04_TestRunnerSmoke.java</include>-->
-<!--                        &lt;!&ndash;         <include>**/_04_TestRunnerSmoke.java</include>&ndash;&gt;-->
-<!--                    </includes>-->
+                    <includes>
+                        <!-- for run class or classes  **/ bulundugu lokasyonu butun klasorlere gore bulabiliyor -->
+                        <include>**/RegressionRunner.java</include>
+                    </includes>
                     <testFailureIgnore>true</testFailureIgnore>
+
                 </configuration>
-            </plugin>
-            <!-- bu bolume kadar olan kisim sonradn eklendi farkli bir rapor alma yontemi -->
-
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>2.8.0</version>
-
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>Project Name</projectName>
-                            <outputDirectory>${project.build.directory}/Report/cucumber-reports</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/cucumber/cucumber.json</cucumberOutput>
-                            <skippedFails>true</skippedFails>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <!-- her seferinde class adi yazmamak icin bunu ekledik. jenkins de her calistiginda yukaridaki default olani calistirdi bunlari ekledik ve jenkins e parametre vericez buraya gelip aricak -->
+    <profiles>
+        <profile>
+            <id>Regression_New</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M1</version>
+                        <configuration>
+
+                            <includes>
+                                <!-- for run class or classes  **/ bulundugu lokasyonu butun klasorlere gore bulabiliyor -->
+                                <include>**/RegressionRunner.java</include>
+                            </includes>
+                            <testFailureIgnore>true</testFailureIgnore>
+
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+
+        <profile>
+            <id>Smoke</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M1</version>
+                        <configuration>
+
+                            <includes>
+                                <!-- for run class or classes  **/ bulundugu lokasyonu butun klasorlere gore bulabiliyor -->
+                                <include>**/SmokeRunner.java</include>
+                            </includes>
+                            <testFailureIgnore>true</testFailureIgnore>
+
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
