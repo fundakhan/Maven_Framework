@@ -174,7 +174,7 @@
 
                     <includes>
                         <!-- for run class or classes  **/ bulundugu lokasyonu butun klasorlere gore bulabiliyor -->
-                        <include>**/RegressionRunner.java</include>
+                        <include>**/_05_TestRunnerRegression.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
 
@@ -197,7 +197,7 @@
 
                             <includes>
                                 <!-- for run class or classes  **/ bulundugu lokasyonu butun klasorlere gore bulabiliyor -->
-                                <include>**/RegressionRunner.java</include>
+                                <include>**/_05_TestRunnerRegression.java</include>
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
 
@@ -220,7 +220,7 @@
 
                             <includes>
                                 <!-- for run class or classes  **/ bulundugu lokasyonu butun klasorlere gore bulabiliyor -->
-                                <include>**/SmokeRunner.java</include>
+                                <include>**/_04_TestRunnerSmoke.java</include>
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
 
