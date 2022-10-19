@@ -13,6 +13,7 @@ import org.testng.annotations.Parameters;
         tags = "@Regression", // hangi seneryolarda bu etiket varsa onlar calistirilacak
         features = {"src/test/java/FeatureFiles/"},
         glue = {"StepDefinitions"}
+      //  plugin = {"html:target//cucumber-reports.html"}
 
 
 )
@@ -26,7 +27,7 @@ public class _08_TestRunnerParallel extends AbstractTestNGCucumberTests {
         //burada browser set edilecek. yani BaseDriver ile baglantisini yapicaz. set edince BaseDriver i etkilemesi lazim ki oradan hangi driver i acacagina karar vericek
 
         BaseDriver.threadBrowserName.set(browser); // bu thread e browserName set edildi
-
+              // parallel XML deki hattan geldi buraya browser name set edildi
     }
 
 

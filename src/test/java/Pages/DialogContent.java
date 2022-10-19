@@ -3,12 +3,14 @@ package Pages;
 import Utilities.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class DialogContent extends Parent{
 
@@ -70,6 +72,9 @@ public class DialogContent extends Parent{
     @FindBy(xpath = "//ms-integer-field[@formcontrolname='priority']//input")
     private WebElement priority;
 
+    @FindBy(xpath = "//tbody/tr/td[2]")
+    public List<WebElement> nameList;    // ulasabilmek icin public yaptik. direct alicaz
+
 
 
 
@@ -121,6 +126,9 @@ public class DialogContent extends Parent{
     }
 
     public void searchAndDelete(String searchText){
+        //sayfa search sirasinda asagi kayiyorsa scrollUp yapabilirsin
+        scrollUpPage(); //methodu parent class da
+
         findAndSend("searchInput",searchText); //arama kutucuguna kelimeyi yaz
         findAndClick("searchButton"); //aram butununa bas
 

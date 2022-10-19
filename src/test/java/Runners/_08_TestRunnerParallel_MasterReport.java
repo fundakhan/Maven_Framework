@@ -13,6 +13,7 @@ import org.testng.annotations.Parameters;
         glue = {"StepDefinitions"},
         plugin= {"pretty","html:target/site/cucumber-pretty","json:target/cucumber/cucumber.json"}
         // master report için
+        //when we use this plugin, it runs starts them at the same time. we can specify how many tests running at the same time.
 )
 
 

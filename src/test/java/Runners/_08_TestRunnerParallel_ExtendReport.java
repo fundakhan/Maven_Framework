@@ -24,9 +24,6 @@ import org.testng.annotations.Parameters;
             //burada browser set edilecek
             // bu threade browsername set edildi.
         }
-
-
-
         @AfterClass
         public static void writeExtentReport(){
             ExtentService.getInstance().setSystemInfo("User Name", "Funda Akhan");

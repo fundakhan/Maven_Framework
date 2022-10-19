@@ -27,15 +27,15 @@ public class BaseDriver {
 
 
     /** bu baseDriverin yeni hali parallel test olsa da calisacak olmasa da calisacak */
-    private static ThreadLocal<WebDriver>  threadDriver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver>  threadDriver = new ThreadLocal<>(); // her local in thread i
     // bu icerisinde WebDriver 1 WebDriver 2 yi yi tanimlicak
-    // bu bana her bir hat da vericek. her bir hattin browser i var
+    // bu bana her bir hat da vericek.
 
+    // her bir hattin browser adi var alttaki threadBrowserName gibi.
     public static ThreadLocal<String> threadBrowserName = new ThreadLocal<>(); // chrome, firefox..
 
     // threadDriver.get() -> ilgili thread deki driver i verecek
-    // threadDriver.set(driver) -> ilgili thread ile driver set ediliyor
-
+    // threadDriver.set(driver) -> ilgili thread e driver set ediliyor
 
 
     public static WebDriver getDriver(){
@@ -50,16 +50,16 @@ public class BaseDriver {
         System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY,"Error"); // terminalde ilk basta cikan kirmizi iki satirlik uyari yazisini kaldirmak icin kullandik
 
 
-        if (threadBrowserName.get() == null) //parallel calismayan yani XML den parametreyle gelmeyen leri cagiramak icin
-            threadBrowserName.set("chrome"); // Basic arayanlar icin
+        if (threadBrowserName.get() == null) //parallel calismayan yani XML den parametreyle gelmeyen leri cagirmak icin
+            threadBrowserName.set("chrome"); // BaseDriverBasic class i arayanlar icin
 
 
 
-        if (threadDriver.get() == null) { // yok ise olustur diyoruz.
+        if (threadDriver.get() == null) {
 
             String browserName = threadBrowserName.get(); // bu thread deki browserName i verdi.
 
-            switch ((browserName)){
+            switch (browserName){
                 case "chrome" :
                    // System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY,"true");
                     WebDriverManager.chromedriver().setup(); // setup kisminda artik eski setproperty yazmamiza gerek kalmadi
@@ -95,9 +95,9 @@ public class BaseDriver {
         if (threadDriver.get() != null) {
             threadDriver.get().quit();  //buraya geldiginde o an o hatta hangi driver varsa onu quit yapacak
 
-            WebDriver driver1 = threadDriver.get();
+            WebDriver driver = threadDriver.get();
             driver = null;
-            threadDriver.set(driver1);  //tekrar gelirse ici bos olmus olsun
+            threadDriver.set(driver);  //tekrar gelirse ici bos olmus olsun
         }
     }
 

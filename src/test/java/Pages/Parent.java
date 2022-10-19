@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Parent {
 /** her POM da kullanabilmek icin Parent class actik */
@@ -34,7 +35,7 @@ public class Parent {
 
     public void scrollToElement(WebElement element){
 
-        // kaydirmayi yap
+        // elemente kadar kaydirmayi yap
         JavascriptExecutor js = (JavascriptExecutor) BaseDriver.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
 
@@ -70,6 +71,20 @@ public class Parent {
         //fuse-progress-bar in child lari 0 olana kadar bekle methodu
         wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("fuse-progress-bar > *"),0));
     }
+
+    public void scrollUpPage(){
+       //sayfayi yukariya kaydir
+        JavascriptExecutor js = (JavascriptExecutor) BaseDriver.getDriver();
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+    }
+
+   public List<WebElement> waitUntilVisibleAllElement(List<WebElement> elementList){
+       WebDriverWait wait = new WebDriverWait(BaseDriver.getDriver(), Duration.ofSeconds(30));
+       wait.until(ExpectedConditions.visibilityOfAllElements(elementList));
+
+       return elementList; // bekle ve elementi bana geri gonder dedik
+   }
 
 
 

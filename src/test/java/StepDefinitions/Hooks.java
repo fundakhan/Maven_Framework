@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import Utilities.BaseDriver;
+import Utilities.ExcelUtility;
 import com.aventstack.extentreports.service.ExtentTestManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -32,15 +33,21 @@ public class Hooks {
         LocalDateTime date = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM.dd.yy");
 
+        //Excel sonuclari yazacagiz, path, scenario name, browserType, time(date)
+        ExcelUtility.writeExcel("src/test/java/ApachePOI/Resource/ScenarioStatus.xlsx",
+                scenario, BaseDriver.threadBrowserName.get(),date.format(formatter));
+
+
+
         if (scenario.isFailed()){  // her scenario icin gecerli. eger failed ise screenshot al methodu
             // klosore
             TakesScreenshot screenshot = (TakesScreenshot) BaseDriver.getDriver();
             File screenFile = screenshot.getScreenshotAs(OutputType.FILE);
 
             // Extent Report a ekliyor.. en altta ekledigim method dan aliyor
-            ExtentTestManager.getTest().addScreenCaptureFromBase64String(getBase64Screenshot());
+           // ExtentTestManager.getTest().addScreenCaptureFromBase64String(getBase64Screenshot());
             /** EXTENT report olmadiginda burasi kapatilmali !!! yoksa browserlar KAPANMAZ (aslinda bu acikken bende kapaniyordu zaten ama ismet hoca boyle yaptirdi)
-             * resim eklemek istedigimiz zaman bunu acicaz */
+             * resim eklemek istedigimiz zaman bunu acicaz. Yani rapor almadigimizda screenshot a gerek olmadigi icin*/
 
             try {
 
